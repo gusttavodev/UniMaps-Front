@@ -1,28 +1,36 @@
-<template>      
-<v-container>
-    <v-row justify="center">
-       <FormLogin />
-    </v-row>
-</v-container>  
-  
+<template>
+  <v-container>
+    <v-app id="inspire">
+      <v-app id="inspire">
+        <v-content>
+          <v-container class="fill-height" fluid>
+            <v-row align="center" justify="center">
+              <v-col cols="12" sm="8" md="4">
+                <FormLogin />
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-content>
+      </v-app>
+    </v-app>
+  </v-container>
 </template>
 
 <script>
 // @ is an alias to /src
-import FormLogin from "../components/userForm/FormLogin";
+import FormLogin from "@/components/userForm/FormLogin";
 
 export default {
-  name: "login",
+  name: "Login",
   components: {
-    FormLogin
-  }
+    FormLogin,
+  },
 };
 </script>
 
-
 <style>
 #login {
-   width: 70px;
+  width: 70px;
   height: 300px;
   border: 1px solid #c3c3c3;
   display: flex;

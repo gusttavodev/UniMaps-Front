@@ -35,7 +35,11 @@
           <!-- <b-alert v-model="errorAlert" variant="danger" dismissible>
             {{ errMsg }}
           </b-alert> -->
-
+          <span class="caption grey--text text--darken-1">
+            <router-link to="/register">
+              Cadastro
+            </router-link>           
+          </span>
           <span class="caption grey--text text--darken-1">
             Esquesceu sua senha ?
           </span>
@@ -104,13 +108,16 @@ export default {
     async submit() {
       // Pŕe validate
       this.$v.$touch();
+      
       if (!this.$v.$invalid) {
         const response = await this.login();
         if (response.status === 200) {
           alert("Logado com sucesso!");
+          this.$router.push('/home')
           // const token = response.data.token;
-          this.$router.push({ name: "home" });
         } else if (response.statusCode === 401) {
+          this.showErrorAlert(response.message);
+        }else if (response.statusCode === 401) {
           this.showErrorAlert(response.message);
         }
       }

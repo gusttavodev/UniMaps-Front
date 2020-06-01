@@ -52,9 +52,9 @@
             type="password"
           ></v-text-field>
 
-          <b-alert v-model="errorAlert" variant="danger" dismissible>
+          <!-- <b-alert v-model="errorAlert" variant="danger" dismissible>
             Este E-mail já esta cadastrado!
-          </b-alert>
+          </b-alert> -->
 
           <span class="caption grey--text text--darken-1">
             Já tem uma conta ? Clique Aki
@@ -155,7 +155,7 @@ export default {
         const response = await this.cadastro();
         if (response.status === 200) {
           alert("Conta cadastrada com sucesso!");
-          this.$router.push({ name: "home" });
+          this.$router.push('/')
         } else if (response.statusCode === 500) {
           this.showErrorAlert();
         }
@@ -169,7 +169,8 @@ export default {
         email: this.email
       };
       const response = await Crud.cadastro(user);
-
+  console.log("response", response);
+  
       return response;
     },
 
