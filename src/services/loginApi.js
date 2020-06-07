@@ -16,5 +16,14 @@ export default {
     } catch (error) {
       return error.response.data;
     }
+  },
+  getLocalUser() {
+    const userStr = localStorage.getItem("user");
+
+    if(!userStr) {
+        return null;
+    }
+
+    return JSON.parse(userStr);
   }
 };

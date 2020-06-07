@@ -155,7 +155,7 @@ export default {
         const response = await this.cadastro();
         if (response.status === 200) {
           alert("Conta cadastrada com sucesso!");
-          this.$router.push('/')
+          this.$router.push('/home')
         } else if (response.statusCode === 500) {
           this.showErrorAlert();
         }
@@ -169,7 +169,7 @@ export default {
         email: this.email
       };
       const response = await Crud.cadastro(user);
-  console.log("response", response);
+      console.log("response", response);
   
       return response;
     },

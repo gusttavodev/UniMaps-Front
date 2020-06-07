@@ -108,28 +108,33 @@ export default {
     async submit() {
       // Pŕe validate
       this.$v.$touch();
-      
+      //Chama o evento de actions em store.js VueX
+      this.$store.dispatch('login');
       if (!this.$v.$invalid) {
         const response = await this.login();
+        console.log("response", response);
+        
         if (response.status === 200) {
-          alert("Logado com sucesso!");
+          alert("Logado com sucesso!");         
           this.$router.push('/home')
-          // const token = response.data.token;
         } else if (response.statusCode === 401) {
-          this.showErrorAlert(response.message);
-        }else if (response.statusCode === 401) {
           this.showErrorAlert(response.message);
         }
       }
     },
     async login() {
-      let user = {
+      try {
+        let user = {
         password: this.password,
         email: this.email
-      };
-      const response = await Crud.login(user);
-
-      return response;
+        };
+        const response = await Crud.login(user);
+         this.$store.commit("loginSucess", response)
+        return response;
+      } catch (error) {
+        this.$store.commit("loginFailed", error)
+        return error;
+      }      
     },
 
     showErrorAlert(msg) {

@@ -4,7 +4,7 @@
       <h2>Digite a localidade do seu problema</h2>
       <label>
         <gmap-autocomplete @place_changed="setPlace"> </gmap-autocomplete>
-        <button @click="addMarker">Add</button>
+        <button @click="addMarker">Adicionar</button>
       </label>
       <br />
     </div>
