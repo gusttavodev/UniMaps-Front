@@ -15,10 +15,10 @@
         </v-list-item>
         <v-list-item link>
           <v-list-item-action>
-            <v-icon>mdi-close</v-icon>
+            <v-icon>mdi-email</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title @click="logout">Sair</v-list-item-title>
+            <v-list-item-title>Contact</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -34,7 +34,32 @@
     </v-app-bar>
 
     <v-content>
-         <google-map />
+      <v-container
+        class="fill-height"
+        fluid
+      >
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-col class="text-center">
+            <v-tooltip left>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  :href="source"
+                  icon
+                  large
+                  target="_blank"
+                  v-on="on"
+                >
+                  <v-icon large>mdi-code-tags</v-icon>
+                </v-btn>
+              </template>
+              <span>Source</span>
+            </v-tooltip>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-content>
     <v-footer
       color="indigo"
@@ -46,28 +71,13 @@
 </template>
 
 <script>
-import GoogleMap from "../components/GoogleMap.vue";
   export default {
-    name: "Home",
-    components: {
-    GoogleMap,
-    },
+    name: "mainTemplate",
     props: {
       source: String,
     },
     data: () => ({
       drawer: null,
     }),
-    methods: {
-    logout() {
-      this.$store.commit('logout');
-      this.$router.push('/login');      
-    },
-
-    showErrorAlert(msg) {
-      this.errorAlert = true;
-      this.errMsg = msg;
-    }
-  }
   }
 </script>
