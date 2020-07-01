@@ -4,9 +4,9 @@
       <v-subheader>REPORTS</v-subheader>
       <v-list-item-group color="primary">
         <v-list-item v-for="(item, i) in markers" :key="i">
-          <!-- <v-list-item-avatar v-if="avatar">
-            <v-img :src="item.avatar"></v-img>
-          </v-list-item-avatar> -->
+         <v-list-item-avatar>
+            <v-img :src="item.icon"></v-img>
+          </v-list-item-avatar>
           <v-list-item-content v-if="item">
             <v-list-item-title v-html="item.title"></v-list-item-title>
             <v-list-item-subtitle              

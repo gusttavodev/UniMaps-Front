@@ -1,19 +1,25 @@
 <template>
-   <v-row     
-     
-      no-gutters
-    >
+  <v-row no-gutters>   
     <v-col cols="10">
       <div>
-        <h2>Digite a localidade do seu problema</h2>
-        <label>
-          <gmap-autocomplete
-            @place_changed="setPlace"
-            :selectFirstOnEnter="true"
-            required
-          ></gmap-autocomplete>
-          <button @click="addMarker">Adicionar</button>
-        </label>
+        <v-col cols="12">
+          <h2>Digite a localidade do seu problema</h2>       
+          <label>
+            <gmap-autocomplete
+              @place_changed="setPlace"
+              :selectFirstOnEnter="true"
+              required
+            ></gmap-autocomplete>
+            <button @click="addMarker">Adicionar</button>
+          </label>
+        </v-col>
+        <v-col cols="12">
+        <v-textarea
+          v-model="description"
+          solo
+          value="Descreva o problema da sua localidade"
+        ></v-textarea>
+        </v-col>
         <br />
       </div>
       <br />
@@ -40,16 +46,16 @@
           }"
         />
       </GmapMap>
-   </v-col>
-   <v-col>
+    </v-col>
+    <v-col>
       <ListMarker :markers="markers" />
-   </v-col>
+    </v-col>
   </v-row>
 </template>
 
 <script>
 // @ is an alias to /src
-import ListMarker from "./ListMarker"
+import ListMarker from "./ListMarker";
 export default {
   name: "GoogleMap",
   components: {
@@ -57,14 +63,26 @@ export default {
   },
   data() {
     return {
+      description: "",
       center: { lat: 45.508, lng: -73.587 },
       markers: [],
       currentPlace: null,
     };
   },
 
-  mounted() {
+  async mounted() {
     this.geolocate();
+    await this.$refs.gmap.$mapPromise.then((map) => {
+      map.setOptions({
+        minZoom: 2,
+        maxZoom: 18,
+        mapTypeControl: false,
+        scaleControl: true,
+        streetViewControl: false,
+        rotateControl: true,
+        fullscreenControl: false,
+      });
+    });
   },
 
   methods: {
@@ -85,7 +103,8 @@ export default {
           },
           title: this.currentPlace.formatted_address,
           clickable: true,
-          description: "Descrição do problema"
+          description: this.description,
+          icon: "https://cdn.vuetifyjs.com/images/profiles/marcus.jpg",
         });
         this.currentPlace = null;
         // const lat = this.markers[0].position.lat;
