@@ -9,7 +9,7 @@
       ></v-avatar>
     </v-card-title>
 
-    <v-window>
+    <v-window id="card">
       <v-window-item>
         <v-card-text>
           <v-text-field
@@ -57,16 +57,21 @@
           </b-alert> -->
 
           <span class="caption grey--text text--darken-1">
-            Já tem uma conta ? Clique Aki
+            Já tem uma conta ? 
+          </span>
+            <span class="caption grey--text text--darken-1">
+            <router-link to="/login">
+              Clique Aqui
+            </router-link>           
           </span>
         </v-card-text>
       </v-window-item>
     </v-window>
 
-    <v-card-actions>
+    <v-card-actions id="card">
       <v-spacer></v-spacer>
 
-      <v-btn color="blue" depressed @click="submit">
+      <v-btn color="primary" depressed @click="submit">
         Cadastrar
       </v-btn>
 
@@ -186,4 +191,9 @@ export default {
 label {
   color: brown;
 }
+#card{
+  background:rgba(84, 155, 74, 0.123);
+
+}
+
 </style>

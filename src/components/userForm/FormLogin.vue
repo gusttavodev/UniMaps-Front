@@ -9,7 +9,7 @@
       ></v-avatar>
     </v-card-title>
 
-    <v-window>
+    <v-window id="card">
       <v-window-item>
         <v-card-text>
           <v-text-field
@@ -36,21 +36,21 @@
             {{ errMsg }}
           </b-alert> -->
           <span class="caption grey--text text--darken-1">
-            <router-link to="/register">
-              Cadastro
-            </router-link>           
+            Não tem uma conta ainda ?
           </span>
           <span class="caption grey--text text--darken-1">
-            Esquesceu sua senha ?
+            <router-link to="/register">
+              Cadastrar-se
+            </router-link>           
           </span>
         </v-card-text>
       </v-window-item>
     </v-window>
 
-    <v-card-actions>
+    <v-card-actions id="card">
       <v-spacer></v-spacer>
 
-      <v-btn color="blue" depressed @click="submit">
+      <v-btn color="primary" depressed @click="submit">
         Entrar
       </v-btn>
 
@@ -149,5 +149,9 @@ export default {
 <style scoped>
 label {
   color: brown;
+}
+#card{
+  background:rgba(84, 155, 74, 0.123);
+
 }
 </style>
