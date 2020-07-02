@@ -43,8 +43,8 @@ router.beforeEach((to, from, next) => {
   console.log("currentUser", currentUser);
   console.log("requiredAuth", requiredAuth);
   if (requiredAuth && !currentUser) {
-    next('/login')
-  } else if (to.path == '/login' && currentUser) {
+    next('/')
+  } else if (to.path == '/' && currentUser) {
     next('/home')
   } else {
     next()

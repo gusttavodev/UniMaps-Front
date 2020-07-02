@@ -5,7 +5,7 @@ import Cadastro from "./views/Cadastro.vue";
 
 export const routes = [
   {
-    path: "/login",
+    path: "/",
     name: "Login",
     component: Login
   },
